@@ -1,0 +1,14 @@
+{
+  "name": "wpsent-ai-bot",
+  "version": "1.0.0",
+  "description": "WhatsApp AI bot using WPSent + Groq",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^14.0.0",
+    "groq-sdk": "^0.3.0"
+  }
+}

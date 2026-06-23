@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "framework": "nextjs",
+  "functions": {
+    "pages/api/webhook.js": {
+      "maxDuration": 30
+    }
+  }
+}
