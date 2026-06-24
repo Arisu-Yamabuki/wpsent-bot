@@ -179,7 +179,10 @@ export default async function handler(req, res) {
   }
 
   if (WEBHOOK_SECRET) {
-    if (req.headers["x-webhook-secret"] !== WEBHOOK_SECRET) {
+    // Accept secret via ?key=SECRET query param
+    // Set your webhook URL as: https://your-app.vercel.app/api/webhook?key=YOUR_SECRET
+    const incoming = req.query.key || req.headers["x-webhook-secret"];
+    if (incoming !== WEBHOOK_SECRET) {
       return res.status(401).json({ error: "Unauthorized" });
     }
   }
