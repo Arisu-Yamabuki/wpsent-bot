@@ -64,12 +64,13 @@ function stripThinking(text) {
 
 // ── Send reply via WPSent ─────────────────────────────────────────────────────
 async function sendWhatsAppReply(to, message) {
-  const cleanTo = cleanNumber(to);
-  const url = `${WPSENT_BASE_URL}/send?clientid=${WPSENT_CLIENT_ID}&key=${WPSENT_API_KEY}&to=${cleanTo}`;
+  // Pass full original ID (e.g. "216570135629880@lid") in body
+  // so WPSent resolves it internally
+  const url = `${WPSENT_BASE_URL}/send?clientid=${WPSENT_CLIENT_ID}&key=${WPSENT_API_KEY}`;
   const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message }),
+    body: JSON.stringify({ message, to }),
   });
   if (!res.ok) {
     const err = await res.text();
