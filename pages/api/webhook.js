@@ -21,7 +21,9 @@ async function redisGet(key) {
     headers: { Authorization: `Bearer ${UPSTASH_REDIS_REST_TOKEN}` },
   });
   const data = await res.json();
-  return data.result ? JSON.parse(data.result) : [];
+  if (!data.result) return [];
+  const parsed = JSON.parse(data.result);
+  return Array.isArray(parsed) ? parsed : [];
 }
 
 async function redisSet(key, value) {
