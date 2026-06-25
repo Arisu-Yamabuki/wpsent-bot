@@ -66,8 +66,9 @@ vercel env add GROQ_MODEL
 vercel --prod
 ```
 
-Your webhook URL will be: `https://your-project.vercel.app/api/webhook`
+Your webhook URL will be: `https://your-project.vercel.app/api/webhook?key=Your Webhook Secret`
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/arisu-yamabuki/wpsent-bot)   
 #### Option B — Netlify
 
 ```bash
@@ -83,7 +84,7 @@ netlify deploy --build --prod
 
 Set env vars in **Netlify → Site Settings → Environment Variables**.
 
-Your webhook URL: `https://your-site.netlify.app/api/webhook`
+Your webhook URL: `https://your-site.netlify.app/api/webhook?key=Your ENV Secret KEY`
 
 ### 4. Register the Webhook in WPSent
 
@@ -95,7 +96,7 @@ curl -X POST https://wpsent.xyz/webhooks \
   -H "x-api-key: YOUR_SECRET_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "url": "https://your-app.vercel.app/api/webhook",
+    "url": "https://your-app.vercel.app/api/webhook?key=Your ENV Secret KEY",
     "method": "POST",
     "label": "AI Bot"
   }'
@@ -113,7 +114,7 @@ curl -X POST https://wpsent.xyz/webhooks \
 | `WPSENT_BASE_URL`  | No       | Default: `https://wpsent.xyz`                           |
 | `GROQ_MODEL`       | No       | Default: `llama3-8b-8192` (see models below)            |
 | `SYSTEM_PROMPT`    | No       | Bot personality/instructions                             |
-| `WEBHOOK_SECRET`   | No       | Extra security: match in WPSent webhook header          |
+| `WEBHOOK_SECRET`   | No       | Extra security: match in WPSent webhook header with query ?key=         |
 
 ### Available Groq Models
 
